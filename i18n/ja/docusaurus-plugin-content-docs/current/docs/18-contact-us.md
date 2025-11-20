@@ -1,6 +1,6 @@
 ---
 id: contact-us
-sidebar_position: 17
+sidebar_position: 18
 ---
 
 # お問い合わせ

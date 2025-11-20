@@ -1,6 +1,6 @@
 ---
 id: bind-public-ip
-sidebar_position: 13
+sidebar_position: 14
 ---
 
 # Bind Public IP（パブリックIP割り当て）

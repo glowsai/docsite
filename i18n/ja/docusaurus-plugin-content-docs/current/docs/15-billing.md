@@ -1,6 +1,6 @@
 ---
 id: billing
-sidebar_position: 14
+sidebar_position: 15
 ---
 
 # 請求システム

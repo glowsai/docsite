@@ -2,7 +2,7 @@
 id: upload-custom-docker-image
 title: 'Glows.ai へのカスタム Docker イメージのアップロード'
 date: '2025-09-28 19:00'
-sidebar_position: 8
+sidebar_position: 9
 description: '本チュートリアルでは、ローカルの Docker イメージを Glows.ai にアップロードして使用する方法をステップごとに解説します。イメージの準備、パッケージ化、アップロード、インスタンス作成までを一通り実演します。'
 ---
 

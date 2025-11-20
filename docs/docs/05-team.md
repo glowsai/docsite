@@ -1,3 +1,8 @@
+---
+id: team
+sidebar_position: 5
+---
+
 # Glows.ai Team User Guide
 
 **Glows.ai Team** enables team collaboration, centralized resource management, flexible quota allocation, and secure sharing mechanisms—designed to meet enterprise-level requirements for shared cloud resource utilization.
@@ -6,9 +11,9 @@ Glows.ai Team brings teams together with unified resource management, dynamic qu
 
 This guide includes:
 
-- [Owner Guide](../c/69154d5c-b6b0-832c-97ca-44b21e415e37#creator-guide)
-- [Admin Guide](../c/69154d5c-b6b0-832c-97ca-44b21e415e37#administrator-guide)
-- [Member Guide](../c/69154d5c-b6b0-832c-97ca-44b21e415e37#member-guide)
+- [Owner Guide](#owner-guide)
+- [Admin Guide](#administrator-guide)
+- [Member Guide](#member-guide)
 
 ------
 
@@ -67,8 +72,8 @@ The Role field currently supports two options: Admin (administrator) and Member 
 
 ![image-20251106220229850](../docs-images/p05team/07.png)
 
-After creation, click `Copy Login Details` to retrieve the new member’s credentials and share them with them.
-Refer to [Member Login Guide](../c/69154d5c-b6b0-832c-97ca-44b21e415e37) for login instructions.
+After creation, click `Copy Login Details` to retrieve the new member's credentials and share them with them.
+Refer to [Member Login Guide](#join-a-team) for login instructions.
 
 ![image-20251106163746546](../docs-images/p05team/08.png)
 

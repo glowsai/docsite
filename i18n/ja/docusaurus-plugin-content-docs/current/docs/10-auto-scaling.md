@@ -1,6 +1,6 @@
 ---
 id: auto-scaling
-sidebar_position: 9
+sidebar_position: 10
 ---
 
 # Auto Scaling 機能

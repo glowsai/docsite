@@ -1,6 +1,6 @@
 ---
 id: auto-deploy-usage
-sidebar_position: 16
+sidebar_position: 17
 ---
 
 # Auto Deploy 使用方法
