@@ -175,8 +175,8 @@ Note that if the specified **Deploy-Route-Target** cannot be found, calling this
 
 If you have any questions or suggestions while using Glows.ai, feel free to contact us via email, Discord, or Line.
 
-Glows.ai Email Address: support@glows.ai
+**Email:** [support@glows.ai](mailto:support@glows.ai)
 
-Discord: https://discord.com/invite/Glows.ai
+**Discord:** [https://discord.com/invite/glowsai](https://discord.com/invite/glowsai)
 
-Line link: https:/lin.ee/fHcoDgG
+**Line:** [https://lin.ee/fHcoDgG](https://lin.ee/fHcoDgG)
