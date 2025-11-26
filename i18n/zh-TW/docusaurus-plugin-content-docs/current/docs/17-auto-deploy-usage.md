@@ -19,15 +19,15 @@ Glows.ai 提供了 **Auto Deploy** 服務，配置好 **Auto Deploy** 後會有�
 
 我們進入 Auto Deploy 界面，點擊右上角的`New Deploy`，新建一個配置項。
 
-![image-20250527162345042](../../../../../docs-images/p17auto-deploy/01.png)
+![image-20250527162345042](../../../../../docs/docs-images/p17auto-deploy/01.png)
 
 設置配置項名稱和簡介，方便自己區分。
 
-![image-20250527162731979](../../../../../docs-images/p17auto-deploy/02.png)
+![image-20250527162731979](../../../../../docs/docs-images/p17auto-deploy/02.png)
 
 選擇程序運行需要的顯卡和環境，可以選自己配置好的Snapshot，也可以選系統預置的鏡像。
 
-![image-20250529100940587](../../../../../docs-images/p17auto-deploy/03.png)
+![image-20250529100940587](../../../../../docs/docs-images/p17auto-deploy/03.png)
 
 設置我們程序碼監聽的服務端口(Port)和程序碼運行指令(Start Command)。
 
@@ -40,7 +40,7 @@ Start Command: cd /BreezyVoice && python api.py
 
 另外設置 Instance Idle Retention Period 為 10min，設置 Maximum Number of Instances 為5。
 
-![image-20251124152629841](../../../../../docs-images/p17auto-deploy/04.png)
+![image-20251124152629841](../../../../../docs/docs-images/p17auto-deploy/04.png)
 
 最後點擊`Confirm`完成配置。
 
@@ -48,7 +48,7 @@ Start Command: cd /BreezyVoice && python api.py
 
 配置完成後即可看到服務對應的固定 link，以及我們配置的信息。
 
-![image-20250527162928849](../../../../../docs-images/p17auto-deploy/05.png)
+![image-20250527162928849](../../../../../docs/docs-images/p17auto-deploy/05.png)
 
 ### 調用Auto Deploy link
 
@@ -65,7 +65,7 @@ curl -X POST "https://tw-01.sgw.glows.ai:xxxxxx/v1/audio/speech" \
   }' --output test_speech.wav
 ```
 
-![image-20250527163237581](../../../../../docs-images/p17auto-deploy/06.png)
+![image-20250527163237581](../../../../../docs/docs-images/p17auto-deploy/06.png)
 
 在請求結束後，10分鐘內我們不向API發送請求（創建時設置的 Instance Idle Retention Period 值），則機器會自動釋放，在Auto Deploy 界面也會顯示配置項目總花費，和Instance Status狀態，Instance Status狀態含義如下：
 
@@ -75,7 +75,7 @@ curl -X POST "https://tw-01.sgw.glows.ai:xxxxxx/v1/audio/speech" \
 
 - Running：實例創建成功，在處理請求，請求處理完成後會繼續等待新請求，如果連續5分鐘沒有新請求進入，則會自動釋放實例。
 
-![image-20250527163744664](../../../../../docs-images/p17auto-deploy/07.png)
+![image-20250527163744664](../../../../../docs/docs-images/p17auto-deploy/07.png)
 
 ## 高級用法
 
@@ -108,7 +108,7 @@ Start Command: python -m http.server 8080
 
 另外設置 Instance Idle Retention Period 為 3min，設置 Maximum Number of Instances 為2。
 
-![image-20251124164032138](../../../../../docs-images/p17auto-deploy/08.png)
+![image-20251124164032138](../../../../../docs/docs-images/p17auto-deploy/08.png)
 
 ### scale-out 模式
 
@@ -122,7 +122,7 @@ curl -i \
 
 在響應頭中會顯示`Deploy-Route-Target`值，這個值對應我們實例介面看到的實例ID，後面也可以通過指定 Deploy-Route-Rule 為實例ID，直接調用對應實例內服務。
 
-![PixPin_2025-11-21_09-59-13](../../../../../docs-images/p17auto-deploy/09.png)
+![PixPin_2025-11-21_09-59-13](../../../../../docs/docs-images/p17auto-deploy/09.png)
 
 需要注意，如果通過該 Autodeploy 開啟的實例總數已經等於設置的 Maximum Number of Instances ，再調用該模式，會返回錯誤代碼：{"code": 1007, "msg": "deployment replica quota exceeded"}。
 
@@ -136,11 +136,11 @@ curl -i \
   -H "Deploy-Route-Rule: random"
 ```
 
-![PixPin_2025-11-21_09-57-03](../../../../../docs-images/p17auto-deploy/10.png)
+![PixPin_2025-11-21_09-57-03](../../../../../docs/docs-images/p17auto-deploy/10.png)
 
 當已啟動實力總數大於等於兩個的時候連續調用該模式，會看到響應頭中的  Deploy-Route-Rule 是隨機變化的。
 
-![PixPin_2025-11-21_10-06-10](../../../../../docs-images/p17auto-deploy/11.png)
+![PixPin_2025-11-21_10-06-10](../../../../../docs/docs-images/p17auto-deploy/11.png)
 
 需要注意，如果當前沒有通過該 Autodeploy 開啟的實例，調用該模式會返回錯誤代碼： {"code": 1006, "msg": "route target not found"}。
 
@@ -156,7 +156,7 @@ curl -i \
 
 當已啟動實力總數大於等於兩個的時候連續調用該模式，會看到響應頭中的  Deploy-Route-Rule 是順序變化的。
 
-![PixPin_2025-11-21_10-04-43](../../../../../docs-images/p17auto-deploy/12.png)
+![PixPin_2025-11-21_10-04-43](../../../../../docs/docs-images/p17auto-deploy/12.png)
 
 需要注意，如果當前沒有通過該 Autodeploy 開啟的實例，調用該模式會返回錯誤代碼： {"code": 1006, "msg": "route target not found"}。
 
@@ -172,7 +172,7 @@ curl -i \
 
 在一個請求，需要連續調用多個接口處理時，該模式非常有用。
 
-![PixPin_2025-11-21_10-02-52](../../../../../docs-images/p17auto-deploy/13.png)
+![PixPin_2025-11-21_10-02-52](../../../../../docs/docs-images/p17auto-deploy/13.png)
 
 需要注意，如果沒有找到對應 Deploy-Route-Target，調用該模式會返回錯誤代碼：{"code": 1006, "msg": "route target not found"}。
 
