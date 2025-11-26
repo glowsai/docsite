@@ -1,3 +1,9 @@
+---
+id: auto-deploy-usage
+sidebar_position: 17
+---
+
+
 ## Glows.ai Auto Deploy Use Case
 
 Typically, using GPUs for service deployment requires us to manually create instances, and once the usage is complete, we must manually release the instances. This model can be cumbersome when GPU services are needed intermittently.
