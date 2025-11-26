@@ -25,15 +25,15 @@ For scenarios compatible with previous handling logic, **Random** and **Round Ro
 
 We enter the Auto Deploy interface and click the "New Deploy" button in the top right corner to create a new configuration.
 
-![image-20250527162345042](../img/01.png)
+![image-20250527162345042](../docs-images/p17auto-deploy/01.png)
 
 Set the configuration name and description for easier identification.
 
-![image-20250527162731979](../img/02.png)
+![image-20250527162731979](../docs-images/p17auto-deploy/02.png)
 
 Choose the GPU and environment required for the program to run. You can select either a custom snapshot you’ve created or a system-provided image.
 
-![image-20250529100940587](../img/03.png)
+![image-20250529100940587](../docs-images/p17auto-deploy/03.png)
 
 Set the service port (Port) and the start command (Start Command) for the code.
 
@@ -46,7 +46,7 @@ Start Command: cd /BreezyVoice && python api.py
 
 Additionally, set the **Instance Idle Retention Period** to 10 minutes and the **Maximum Number of Instances** to 5.
 
-![image-20251124152629841](../img/04.png)
+![image-20251124152629841](../docs-images/p17auto-deploy/04.png)
 
 Finally, click "Confirm" to complete the configuration.
 
@@ -54,7 +54,7 @@ Finally, click "Confirm" to complete the configuration.
 
 Once the configuration is completed, you will see the corresponding service link and the details of the configuration.
 
-![image-20250527162928849](../img/05.png)
+![image-20250527162928849](../docs-images/p17auto-deploy/05.png)
 
 ### Calling the Auto Deploy Link
 
@@ -71,7 +71,7 @@ curl -X POST "https://tw-01.sgw.glows.ai:xxxxxx/v1/audio/speech" \
   }' --output test_speech.wav
 ```
 
-![image-20251125183740060](../img/06-1.png)
+![image-20251125183740060](../docs-images/p17auto-deploy/06-1.png)
 
 After the request is completed, if no new requests are sent within 10 minutes (based on the **Instance Idle Retention Period** setting), the instance will automatically be released. The Auto Deploy interface will also display the total cost for the configuration and the **Instance Status**. The meanings of the **Instance Status** are as follows:
 
@@ -79,7 +79,7 @@ After the request is completed, if no new requests are sent within 10 minutes (b
 - **Idle**: When a request is received, it indicates that the instance is being created. After the request is processed, the instance is being automatically released.
 - **Running**: The instance has been successfully created and is processing requests. After the request is processed, it will continue to wait for new requests. If no new requests come in for 5 minutes, the instance will be automatically released.
 
-![image-20250527163744664](../img/07.png)
+![image-20250527163744664](../docs-images/p17auto-deploy/07.png)
 
 ## Advanced Usage
 
@@ -105,7 +105,7 @@ Start Command: python -m http.server 8080
 
 Additionally, set the **Instance Idle Retention Period** to 3 minutes and the **Maximum Number of Instances** to 2.
 
-![image-20251124164032138](../img/08.png)
+![image-20251124164032138](../docs-images/p17auto-deploy/08.png)
 
 ### scale-out Mode
 
@@ -119,7 +119,7 @@ curl -i \
 
 The response header will display the **Deploy-Route-Target** value, which corresponds to the instance ID visible in the interface. You can also directly invoke the corresponding service in the instance by specifying **Deploy-Route-Rule** as the instance ID.
 
-![PixPin_2025-11-21_09-59-13](../img/09.png)
+![PixPin_2025-11-21_09-59-13](../docs-images/p17auto-deploy/09.png)
 
 Note that if the total number of instances started through this Auto Deploy has reached the **Maximum Number of Instances**, calling this mode will return an error code: `{"code": 1007, "msg": "deployment replica quota exceeded"}`.
 
@@ -135,7 +135,7 @@ curl -i \
 
 When there are two or more instances running, the **Deploy-Route-Rule** in the response header will change randomly on consecutive calls.
 
-![PixPin_2025-11-21_09-57-03](../img/10.png)
+![PixPin_2025-11-21_09-57-03](../docs-images/p17auto-deploy/10.png)
 
 Note that if there are no instances running through this Auto Deploy, calling this mode will return an error code: `{"code": 1006, "msg": "route target not found"}`.
 
@@ -151,7 +151,7 @@ curl -i \
 
 When there are two or more instances running, the **Deploy-Route-Rule** in the response header will change sequentially on consecutive calls.
 
-![PixPin_2025-11-21_10-04-43](../img/12.png)
+![PixPin_2025-11-21_10-04-43](../docs-images/p17auto-deploy/12.png)
 
 Note that if there are no instances running through this Auto Deploy, calling this mode will return an error code: `{"code": 1006, "msg": "route target not found"}`.
 
@@ -167,7 +167,7 @@ curl -i \
 
 This mode is very useful when a request requires multiple interface calls consecutively.
 
-![PixPin_2025-11-21_10-02-52](../img/13.png)
+![PixPin_2025-11-21_10-02-52](../docs-images/p17auto-deploy/13.png)
 
 Note that if the specified **Deploy-Route-Target** cannot be found, calling this mode will return an error code: `{"code": 1006, "msg": "route target not found"}`.
 
