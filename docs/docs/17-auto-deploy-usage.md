@@ -109,7 +109,7 @@ In this tutorial, set the `Instance Idle Retention Period` to 3 minutes and the 
 
 ### scale-out Mode
 
-Calling this mode will start a new instance and return the request result.
+Requesting this mode will start a new instance and return the request result.
 
 ```bash
 curl -i \
@@ -121,7 +121,7 @@ The response header will display the `Deploy-Route-Target` value, which correspo
 
 ![PixPin_2025-11-21_09-59-13](../docs-images/p17auto-deploy/09.png)
 
-Note that if the total number of instances started through this Auto Deploy has reached the **Maximum Number of Instances**, calling this mode will return an error code: `{"code": 1007, "msg": "deployment replica quota exceeded"}`.
+Note that if the total number of instances started through this Auto Deploy has reached the **Maximum Number of Instances**, requesting this mode will return an error code: `{"code": 1007, "msg": "deployment replica quota exceeded"}`.
 
 ### random Mode
 
