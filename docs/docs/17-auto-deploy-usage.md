@@ -17,7 +17,7 @@ Currently, you can customize the `Instance Idle Retention Period` and the `Maxim
 - **Instance Idle Retention Period**: The duration an instance will remain active without receiving new requests before being automatically released.
 - **Maximum Number of Instances**: The maximum number of instances that can be launched under a single Auto Deploy.
 
-For scenarios compatible with previous logic, **Random** and **Round Robin** modes are also supported (for details on usage, see the [Advanced Usage](../c/69257edf-67c8-8327-8213-f905bf4d7d68#高級用法) section).
+For scenarios compatible with previous logic, **Random** and **Round Robin** modes are also supported (for details on usage, refer to the [Advanced Usage](../c/69257edf-67c8-8327-8213-f905bf4d7d68#高級用法) section).
 
 ## Basic Usage
 
