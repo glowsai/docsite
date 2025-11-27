@@ -6,24 +6,24 @@ sidebar_position: 17
 
 ## Glows.ai Auto Deploy Use Case
 
-Typically, using GPUs for service deployment requires us to manually create instances, and once the usage is complete, we must manually release the instances. This model can be cumbersome when GPU services are needed intermittently.
+Typically, deploying GPU-based services requires manually creating instances before use and releasing them afterward. This process becomes inefficient and inconvenient when GPU workloads are intermittent or request-driven.  
 
-Glows.ai provides the **Auto Deploy** service, which, after configuration, will generate a fixed service link. When a request is sent to this link, Glows.ai will automatically create an instance according to the configuration, process the request, and return the result. If there are no new requests sent to the link for a continuous period of **n** minutes, Glows.ai will automatically release the instance.
+Glows.ai solves this problem with **Auto Deploy** —— a service that automatically manages GPU instances on demand. Once configured, Auto Deploy provides you with a fixed service endpoint. When a request is sent to this endpoint, Glows.ai automatically creates an instance based on your configuration, executes the request, and returns the result. If the endpoint remains idle for a continuous period of **n** minutes, Glows.ai will automatically release the instance.  
 
-Let’s go through how to use this feature in detail. In this case, we will use the **BreezyVoice WebUI** image as an example to demonstrate how to use **Auto Deploy**.
+In the following example, we’ll demonstrate how to use **Auto Deploy** with the **BreezyVoice WebUI** image.  
 
 Currently, you can customize the **Instance Idle Retention Period** and the **Maximum Number of Instances**.
 
-- **Instance Idle Retention Period**: The time after which an instance is automatically released if no requests are received.
-- **Maximum Number of Instances**: The maximum number of instances that can be started under a single Auto Deploy.
+- **Instance Idle Retention Period**: The duration an instance will remain active without receiving new requests before being automatically released.
+- **Maximum Number of Instances**: The maximum number of instances that can be launched under a single Auto Deploy.
 
-For scenarios compatible with previous handling logic, **Random** and **Round Robin** modes are also supported (for details on usage, see the [Advanced Usage](../c/69257edf-67c8-8327-8213-f905bf4d7d68#高級用法) section).
+For scenarios compatible with previous logic, **Random** and **Round Robin** modes are also supported (for details on usage, see the [Advanced Usage](../c/69257edf-67c8-8327-8213-f905bf4d7d68#高級用法) section).
 
 ## Basic Usage
 
 ### Configuring **Auto Deploy**
 
-We enter the Auto Deploy interface and click the "New Deploy" button in the top right corner to create a new configuration.
+We enter the Auto Deploy interface and click the `New Deploy` in the top right corner to create a new configuration.
 
 ![image-20250527162345042](../docs-images/p17auto-deploy/01.png)
 
@@ -31,11 +31,11 @@ Set the configuration name and description for easier identification.
 
 ![image-20250527162731979](../docs-images/p17auto-deploy/02.png)
 
-Choose the GPU and environment required for the program to run. You can select either a custom snapshot you’ve created or a system-provided image.
+Choose the GPU and environment required for the program to run. You can select either a custom snapshot you’ve created or a prebuilt system image.
 
 ![image-20250529100940587](../docs-images/p17auto-deploy/03.png)
 
-Set the service port (Port) and the start command (Start Command) for the code.
+Set the service port (`Port`) and the start command (`Start Command`) for the code.
 
 In this case, our service starts on port 8080, and the service code is located at `/BreezyVoice/api.py`, so the service port and start command are set as follows:
 
@@ -44,11 +44,11 @@ Port: 8080
 Start Command: cd /BreezyVoice && python api.py
 ```
 
-Additionally, set the **Instance Idle Retention Period** to 10 minutes and the **Maximum Number of Instances** to 5.
+Set the **Instance Idle Retention Period** to 10 minutes and the **Maximum Number of Instances** to 5.
 
 ![image-20251124152629841](../docs-images/p17auto-deploy/04.png)
 
-Finally, click "Confirm" to complete the configuration.
+Finally, click `Confirm` to complete the configuration.
 
 ### View Configuration Information
 
@@ -58,7 +58,7 @@ Once the configuration is completed, you will see the corresponding service link
 
 ### Calling the Auto Deploy Link
 
-Simply replace the API link with the Auto Deploy link. If the service has its own route, add the relevant path after the Auto Deploy link. For example, the API request path for the service I deployed is `/v1/audio/speech`.
+Simply replace the API link with the Auto Deploy link. If the service provides its own routing, add the relevant path after the Auto Deploy link. For example, the API request path for the service is deployed as `/v1/audio/speech`.
 
 ```bash
 curl -X POST "https://tw-01.sgw.glows.ai:xxxxxx/v1/audio/speech" \
@@ -83,9 +83,9 @@ After the request is completed, if no new requests are sent within 10 minutes (b
 
 ## Advanced Usage
 
-In scenarios compatible with previous handling logic, the **Random** and **Round Robin** modes are also supported. You can set the **Deploy-Route-Rule** parameter in the request header, which supports the following values:
+In scenarios compatible with previous logic, the **Random** and **Round Robin** modes are also supported. You can set the **Deploy-Route-Rule** parameter in the request header, which supports the following values:
 
-1. **scale-out**: Start a new instance and return the interface call result.
+1. **scale-out**: Start a new instance and return the result.
    - If the total number of started instances equals the **Maximum Number of Instances**, an error code will be returned: `{"code": 1007, "msg": "deployment replica quota exceeded"}`
 2. **random**: Randomly select a running instance to forward the request and return the result.
    - If no instances are running, an error code will be returned: `{"code": 1006, "msg": "route target not found"}`
@@ -94,7 +94,7 @@ In scenarios compatible with previous handling logic, the **Random** and **Round
 4. **{Deploy-Route-Target}**: Forward the request to a specific instance and return the result.
    - If the specified **Deploy-Route-Target** cannot be found, an error code will be returned: `{"code": 1006, "msg": "route target not found"}`
 
-In all four modes, the response header will include **Deploy-Route-Target**, indicating which instance the request has been forwarded to, making it easier for users who need continuous requests.
+In all four modes, the response header will include `Deploy-Route-Target`, indicating which instance the request has been forwarded to, making it easier for continuous requests.
 
 In the following example, our service starts on port 8080, and we use Python to create an HTTP server. Therefore, the service port and start command are set as follows:
 
@@ -103,13 +103,13 @@ Port: 8080
 Start Command: python -m http.server 8080
 ```
 
-Additionally, set the **Instance Idle Retention Period** to 3 minutes and the **Maximum Number of Instances** to 2.
+In this tutorial, set the `Instance Idle Retention Period` to 3 minutes and the `Maximum Number of Instances` to 2.
 
 ![image-20251124164032138](../docs-images/p17auto-deploy/08.png)
 
 ### scale-out Mode
 
-Calling this mode will start a new instance and return the interface request result.
+Calling this mode will start a new instance and return the request result.
 
 ```bash
 curl -i \
@@ -117,7 +117,7 @@ curl -i \
   -H "Deploy-Route-Rule: scale-out"
 ```
 
-The response header will display the **Deploy-Route-Target** value, which corresponds to the instance ID visible in the interface. You can also directly invoke the corresponding service in the instance by specifying **Deploy-Route-Rule** as the instance ID.
+The response header will display the `Deploy-Route-Target` value, which corresponds to the instance ID visible in the interface. You can also directly invoke the corresponding service in the instance by specifying **Deploy-Route-Rule** as the instance ID.
 
 ![PixPin_2025-11-21_09-59-13](../docs-images/p17auto-deploy/09.png)
 
@@ -125,7 +125,7 @@ Note that if the total number of instances started through this Auto Deploy has 
 
 ### random Mode
 
-From the instances started through Auto Deploy, randomly select one instance to forward the request and return the interface result.
+In the instances started through Auto Deploy, randomly select one instance to forward the request and return the interface result.
 
 ```bash
 curl -i \
@@ -133,11 +133,11 @@ curl -i \
   -H "Deploy-Route-Rule: random"
 ```
 
-When there are two or more instances running, the **Deploy-Route-Rule** in the response header will change randomly on consecutive calls.
+When two or more instances are running, the `Deploy-Route-Rule` in the response header will change randomly on consecutive calls.
 
 ![PixPin_2025-11-21_09-57-03](../docs-images/p17auto-deploy/10.png)
 
-Note that if there are no instances running through this Auto Deploy, calling this mode will return an error code: `{"code": 1006, "msg": "route target not found"}`.
+If there are no instances running through this Auto Deploy, calling this mode will return an error code: `{"code": 1006, "msg": "route target not found"}`.
 
 ### round-robin Mode
 
@@ -149,11 +149,11 @@ curl -i \
   -H "Deploy-Route-Rule: round-robin"
 ```
 
-When there are two or more instances running, the **Deploy-Route-Rule** in the response header will change sequentially on consecutive calls.
+When two or more instances are running, making consecutive requests using this mode will show that the `Deploy-Route-Rule` value in the response header changes sequentially.
 
 ![PixPin_2025-11-21_10-04-43](../docs-images/p17auto-deploy/12.png)
 
-Note that if there are no instances running through this Auto Deploy, calling this mode will return an error code: `{"code": 1006, "msg": "route target not found"}`.
+Note that if no instances have been started by this Auto Deploy, requesting this mode will return an error code: `{"code": 1006, "msg": "route target not found"}`.
 
 ### {Deploy-Route-Target} Mode
 
