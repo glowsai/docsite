@@ -23,7 +23,7 @@ For scenarios compatible with previous logic, **Random** and **Round Robin** mod
 
 ### Configuring **Auto Deploy**
 
-We enter the Auto Deploy interface and click the `New Deploy` in the top right corner to create a new configuration.
+We enter the Auto Deploy and click the `New Deploy` in the top right corner to create a new configuration.
 
 ![image-20250527162345042](../docs-images/p17auto-deploy/01.png)
 
@@ -56,7 +56,7 @@ Once the configuration is completed, you will see the corresponding service link
 
 ![image-20250527162928849](../docs-images/p17auto-deploy/05.png)
 
-### Calling the Auto Deploy Link
+### Request the Auto Deploy Endpoint
 
 Simply replace the API link with the Auto Deploy link. If the service provides its own routing, add the relevant path after the Auto Deploy link. For example, the API request path for the service is deployed as `/v1/audio/speech`.
 
