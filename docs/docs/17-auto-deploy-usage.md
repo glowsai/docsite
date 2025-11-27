@@ -12,7 +12,7 @@ Glows.ai solves this problem with **Auto Deploy** —— a service that automati
 
 In the following example, we’ll demonstrate how to use **Auto Deploy** with the **BreezyVoice WebUI** image.  
 
-Currently, you can customize the **Instance Idle Retention Period** and the **Maximum Number of Instances**.
+Currently, you can customize the `Instance Idle Retention Period` and the `Maximum Number of Instances`.
 
 - **Instance Idle Retention Period**: The duration an instance will remain active without receiving new requests before being automatically released.
 - **Maximum Number of Instances**: The maximum number of instances that can be launched under a single Auto Deploy.
