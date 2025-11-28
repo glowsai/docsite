@@ -8,7 +8,7 @@ sidebar_position: 17
 
 Typically, deploying GPU-based services requires manually creating instances before use and releasing them afterward. This process becomes inefficient and inconvenient when GPU workloads are intermittent or request-driven.  
 
-Glows.ai solves this problem with **Auto Deploy** —— a service that automatically manages GPU instances on demand. Once configured, Auto Deploy provides you with a fixed service endpoint. When a request is sent to this endpoint, Glows.ai automatically creates an instance based on your configuration, executes the request, and returns the result. If the endpoint remains idle for a continuous period of **n** minutes, Glows.ai will automatically release the instance.  
+Glows.ai addresses this challenge with **Auto Deploy** —— a service that automatically manages GPU instances. Once configured, Auto Deploy provides you with a fixed service endpoint. When a request is sent to this endpoint, Glows.ai automatically creates an instance based on your configuration, executes the request, and returns the result. If the endpoint remains idle for a continuous period of **n** minutes, Glows.ai will automatically release the instance.  
 
 In the following example, we’ll demonstrate how to use **Auto Deploy** with the **BreezyVoice WebUI** image.  
 
@@ -23,7 +23,7 @@ For scenarios compatible with previous logic, **Random** and **Round Robin** mod
 
 ### Configuring **Auto Deploy**
 
-We enter the Auto Deploy and click the `New Deploy` in the top right corner to create a new configuration.
+Enter the Auto Deploy and click the `New Deploy` in the top right corner to create a new configuration.
 
 ![image-20250527162345042](../docs-images/p17auto-deploy/01.png)
 
@@ -44,15 +44,15 @@ Port: 8080
 Start Command: cd /BreezyVoice && python api.py
 ```
 
-Set the **Instance Idle Retention Period** to 10 minutes and the **Maximum Number of Instances** to 5.
+Set the `Instance Idle Retention Period` to 10 minutes and the `Maximum Number of Instances` to 5.
 
 ![image-20251124152629841](../docs-images/p17auto-deploy/04.png)
 
 Finally, click `Confirm` to complete the configuration.
 
-### View Configuration Information
+### Configuration Information
 
-Once the configuration is completed, you will see the corresponding service link and the details of the configuration.
+Once the configuration is complete, you will see the corresponding service link and the details of the configuration.
 
 ![image-20250527162928849](../docs-images/p17auto-deploy/05.png)
 
@@ -73,7 +73,7 @@ curl -X POST "https://tw-01.sgw.glows.ai:xxxxxx/v1/audio/speech" \
 
 ![image-20251125183740060](../docs-images/p17auto-deploy/06-1.png)
 
-After the request is completed, if no new requests are sent within 10 minutes (based on the **Instance Idle Retention Period** setting), the instance will automatically be released. The Auto Deploy interface will also display the total cost for the configuration and the **Instance Status**. The meanings of the **Instance Status** are as follows:
+After the request is complete, if no new requests are sent within 10 minutes (based on the `Instance Idle Retention Period` setting), the instance will automatically be released. The Auto Deploy interface will also display the total cost for the configuration and the **Instance Status**. The meanings of the `Instance Status` are as follows:
 
 - **Standby**: Indicates the configuration is normal, but no instances are running.
 - **Idle**: When a request is received, it indicates that the instance is being created. After the request is processed, the instance is being automatically released.
@@ -83,7 +83,7 @@ After the request is completed, if no new requests are sent within 10 minutes (b
 
 ## Advanced Usage
 
-In scenarios compatible with previous logic, the **Random** and **Round Robin** modes are also supported. You can set the **Deploy-Route-Rule** parameter in the request header, which supports the following values:
+For use cases requiring compatibility with the previous handling logic, the `Random` and `Round Robin` modes are also supported. You can set the `Deploy-Route-Rule` parameter in the request header, which supports the following values:
 
 1. **scale-out**: Start a new instance and return the result.
    - If the total number of started instances equals the **Maximum Number of Instances**, an error code will be returned: `{"code": 1007, "msg": "deployment replica quota exceeded"}`
@@ -109,7 +109,7 @@ In this tutorial, set the `Instance Idle Retention Period` to 3 minutes and the 
 
 ### scale-out Mode
 
-Requesting this mode will start a new instance and return the request result.
+Requesting this mode will start a new instance and return the result.
 
 ```bash
 curl -i \
@@ -121,11 +121,11 @@ The response header will display the `Deploy-Route-Target` value, which correspo
 
 ![PixPin_2025-11-21_09-59-13](../docs-images/p17auto-deploy/09.png)
 
-Note that if the total number of instances started through this Auto Deploy has reached the **Maximum Number of Instances**, requesting this mode will return an error code: `{"code": 1007, "msg": "deployment replica quota exceeded"}`.
+Note that if the total number of instances started through this Auto Deploy has reached the `Maximum Number of Instances`, requesting this mode will return an error code: `{"code": 1007, "msg": "deployment replica quota exceeded"}`.
 
 ### random Mode
 
-In the instances started through Auto Deploy, randomly select one instance to forward the request and return the interface result.
+From the instances started by Auto Deploy, randomly select one instance to forward the request and return the interface result.
 
 ```bash
 curl -i \
@@ -133,7 +133,7 @@ curl -i \
   -H "Deploy-Route-Rule: random"
 ```
 
-When two or more instances are running, the `Deploy-Route-Rule` in the response header will change randomly on consecutive calls.
+When two or more instances are running, the `Deploy-Route-Rule` in the response header will change randomly on consecutive requests.
 
 ![PixPin_2025-11-21_09-57-03](../docs-images/p17auto-deploy/10.png)
 
