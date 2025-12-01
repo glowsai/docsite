@@ -3,80 +3,179 @@ id: auto-deploy-usage
 sidebar_position: 17
 ---
 
-# Auto Deploy Usage
 
-In a typical setup, using **GPU** deployment services often requires manually creating and releasing instances. For scenarios where **GPU** usage is sporadic or infrequent, this manual process can be inefficient and cumbersome.
+## Glows.ai Auto Deploy Use Case
 
-To address this, **Glows.ai** offers the **Auto Deploy** feature. With just a one-time setup, the system will automatically manage the lifecycle of **GPU** instances on your behalf. Once configured, you will receive a fixed **service link**. When a request is sent to this link, **Glows.ai** will automatically create an instance based on your configuration, process the request, and return the result. If no new requests are received within a 5-minute window, the system will automatically release the instance—no manual action needed.
+Typically, deploying GPU-based services requires manually creating instances before use and releasing them afterward. This process becomes inefficient and inconvenient when GPU workloads are intermittent or request-driven.  
 
-This guide will walk you through how to configure and use the **Auto Deploy** feature using the **BreezyVoice WebUI** image as an example.
+Glows.ai addresses this challenge with **Auto Deploy** —— a service that automatically manages GPU instances. Once configured, Auto Deploy provides you with a fixed service endpoint. When a request is sent to this endpoint, Glows.ai automatically creates an instance based on your configuration, executes the request, and returns the result. If the endpoint remains idle for a continuous period of **n** minutes, Glows.ai will automatically release the instance.  
 
----
+In the following example, we’ll demonstrate how to use **Auto Deploy** with the **BreezyVoice WebUI** image.  
 
-### Step 1: Create a New Deployment Task
+Currently, you can customize the `Instance Idle Retention Period` and the `Maximum Number of Instances`.
 
-1. Go to the **Auto Deploy** page and click the `New Deploy` button in the top-right corner to create a new deployment task.
+- **Instance Idle Retention Period**: The duration an instance will remain active without receiving new requests before being automatically released.
+- **Maximum Number of Instances**: The maximum number of instances that can be launched under a single Auto Deploy.
 
-![image-20250527162345042](../docs-images/p13/14.png)
+For scenarios compatible with previous logic, **Random** and **Round Robin** modes are also supported (for details on usage, refer to the [Advanced Usage](../c/69257edf-67c8-8327-8213-f905bf4d7d68#高級用法)).
 
-2. Enter a task name and description to help identify and manage your deployment later.
+## Basic Usage
 
-![image-20250527162731979](../docs-images/p13/15.png)
+### Configuring **Auto Deploy**
 
-3. Select the required **GPU** type and runtime environment for your application. You may use a custom-created **Snapshot**, or choose from one of the system-provided images.
+Enter the Auto Deploy and click the `New Deploy` in the top right corner to create a new configuration.
 
-![image-20250529100940587](../docs-images/p13/20.png)
+![01](../docs-images/p17auto-deploy/01.png)
 
-4. Configure the **Port** your service will listen on and the **Start Command** to launch your application. Then click `Confirm` to finish the setup.  
-   In this example, the service will run on port 8080, and the executable file is api.py located in the **BreezyVoice** directory. The configuration is as follows:
+Set the configuration name and description for easier identification.
+
+![02](../docs-images/p17auto-deploy/02.png)
+
+Choose the GPU and environment required for the program to run. You can select either a custom snapshot you’ve created or a prebuilt system image.
+
+![03](../docs-images/p17auto-deploy/03.png)
+
+Set the service port (`Port`) and the start command (`Start Command`) for the code.
+
+In this case, our service starts on port 8080, and the service code is located at `/BreezyVoice/api.py`, so the service port and start command are set as follows:
 
 ```bash
 Port: 8080
 Start Command: cd /BreezyVoice && python api.py
 ```
 
-![image-20250527162828692](../docs-images/p13/16.png)
+Set the `Instance Idle Retention Period` to 10 minutes and the `Maximum Number of Instances` to 5.
 
-5. Once the deployment task is created, you will receive a dedicated **service link** along with your configuration details.
+![04](../docs-images/p17auto-deploy/04.png)
 
-![image-20250527162928849](../docs-images/p13/17.png)
+Finally, click `Confirm` to complete the configuration.
 
----
+### Configuration Information
 
-### Step 2: Use the Auto Deploy Link
+Once the configuration is complete, you will see the corresponding service link and the details of the configuration.
 
-1. To use the service, simply replace your original **API** endpoint with the **Auto Deploy service link**.
-   If your service includes a custom route, append the path to the end of the **service link**.
-   In this example, the deployed **API** route is `/v1/audio/speech`. Here's how to make a request:
+![05](../docs-images/p17auto-deploy/05.png)
+
+### Request the Auto Deploy Endpoint
+
+Simply replace the API link with the Auto Deploy link. If the service provides its own routing, add the relevant path after the Auto Deploy link. For example, the API request path for the service is deployed as `/v1/audio/speech`.
 
 ```bash
 curl -X POST "https://tw-01.sgw.glows.ai:xxxxxx/v1/audio/speech" \
- -H "Authorization: Bearer sk-template" \
- -H "Content-Type: application/json" \
- --data '{
-  "model": "tts-1",
-  "voice": "alloy",
-  "input": "How about playing basketball after school? The weather looks great today."
-}' --output test_speech.wav
+  -H "Authorization: Bearer sk-template" \
+  -H "Content-Type: application/json" \
+  --data '{
+    "model": "tts-1",
+    "voice": "alloy",
+    "input": "How about playing basketball after school? The weather looks great today."
+  }' --output test_speech.wav
 ```
 
-![image-20250527163237581](../docs-images/p13/18.png)
+![06](../docs-images/p17auto-deploy/06-1.png)
 
-2. After the request is completed, if no additional requests are received within 5 minutes, the instance will be automatically released.  
-   You can monitor the total cost and the current **Instance Status** of your deployment task from the **Auto Deploy** dashboard.  
-   The instance status definitions are as follows:
+After the request is complete, if no new requests are sent within 10 minutes (based on the `Instance Idle Retention Period` setting), the instance will automatically be released. The Auto Deploy interface will also display the total cost for the configuration and the **Instance Status**. The meanings of the `Instance Status` are as follows:
 
-- **Standby**: The deployment task is correctly configured, but no instance is currently running.
-- **Idle**: The instance is either in the process of being created (upon receiving a request) or being released (after the request has been handled).
-- **Running**: The instance has been successfully created and is currently handling requests. If no new request is received within 5 minutes, the instance will be automatically released.
+- **Standby**: Indicates the configuration is normal, but no instances are running.
+- **Idle**: When a request is received, it indicates that the instance is being created. After the request is processed, the instance is being automatically released.
+- **Running**: The instance has been successfully created and is processing requests. After the request is processed, it will continue to wait for new requests. If no new requests come in for 5 minutes, the instance will be automatically released.
 
-![image-20250527163744664](../docs-images/p13/19.png)
+![07](../docs-images/p17auto-deploy/07.png)
 
----
+## Advanced Usage
+
+For use cases requiring compatibility with the previous handling logic, the `Random` and `Round Robin` modes are also supported. You can set the `Deploy-Route-Rule` parameter in the request header, which supports the following values:
+
+1. **scale-out**: Start a new instance and return the result.
+   - If the total number of started instances equals the **Maximum Number of Instances**, an error code will be returned: `{"code": 1007, "msg": "deployment replica quota exceeded"}`
+2. **random**: Randomly select a running instance to forward the request and return the result.
+   - If no instances are running, an error code will be returned: `{"code": 1006, "msg": "route target not found"}`
+3. **round-robin**: Forward the request to the next instance in sequence and return the result.
+   - If no instances are running, an error code will be returned: `{"code": 1006, "msg": "route target not found"}`
+4. **{Deploy-Route-Target}**: Forward the request to a specific instance and return the result.
+   - If the specified **Deploy-Route-Target** cannot be found, an error code will be returned: `{"code": 1006, "msg": "route target not found"}`
+
+In all four modes, the response header will include `Deploy-Route-Target`, indicating which instance the request has been forwarded to, making it easier for continuous requests.
+
+In the following example, our service starts on port 8080, and we use Python to create an HTTP server. Therefore, the service port and start command are set as follows:
+
+```bash
+Port: 8080
+Start Command: python -m http.server 8080
+```
+
+In this tutorial, set the `Instance Idle Retention Period` to 3 minutes and the `Maximum Number of Instances` to 2.
+
+![08](../docs-images/p17auto-deploy/08.png)
+
+### scale-out Mode
+
+Requesting this mode will start a new instance and return the result.
+
+```bash
+curl -i \
+  -X GET "https://tw-07.sgw.glows.ai:20017/d/xxxxx" \
+  -H "Deploy-Route-Rule: scale-out"
+```
+
+The response header will display the `Deploy-Route-Target` value, which corresponds to the instance ID visible in the interface. You can also directly invoke the corresponding service in the instance by specifying **Deploy-Route-Rule** as the instance ID.
+
+![09](../docs-images/p17auto-deploy/09.png)
+
+Note that if the total number of instances started through this Auto Deploy has reached the `Maximum Number of Instances`, requesting this mode will return an error code: `{"code": 1007, "msg": "deployment replica quota exceeded"}`.
+
+### random Mode
+
+From the instances started by Auto Deploy, randomly select one instance to forward the request and return the interface result.
+
+```bash
+curl -i \
+  -X GET "https://tw-07.sgw.glows.ai:20017/d/xxxxx" \
+  -H "Deploy-Route-Rule: random"
+```
+
+![10](../docs-images/p17auto-deploy/10.png)
+
+When two or more instances are running, the `Deploy-Route-Rule` in the response header will change randomly on consecutive requests.
+
+![11](../docs-images/p17auto-deploy/11.png)
+
+If there are no instances running through this Auto Deploy, calling this mode will return an error code: `{"code": 1006, "msg": "route target not found"}`.
+
+### round-robin Mode
+
+The request will be forwarded sequentially to the started instances and return the result.
+
+```bash
+curl -i \
+  -X GET "https://tw-07.sgw.glows.ai:20017/d/xxxxx" \
+  -H "Deploy-Route-Rule: round-robin"
+```
+
+When two or more instances are running, making consecutive requests using this mode will show that the `Deploy-Route-Rule` value in the response header changes sequentially.
+
+![12](../docs-images/p17auto-deploy/12.png)
+
+Note that if no instances have been started by this Auto Deploy, requesting this mode will return an error code: `{"code": 1006, "msg": "route target not found"}`.
+
+### {Deploy-Route-Target} Mode
+
+The request will be forwarded to a specified instance and return the result.
+
+```bash
+curl -i \
+  -X GET "https://tw-07.sgw.glows.ai:20017/d/xxxxx" \
+  -H "Deploy-Route-Rule: xykemlvy"
+```
+
+This mode is very useful when a request requires multiple interface calls consecutively.
+
+![13](../docs-images/p17auto-deploy/13.png)
+
+Note that if the specified **Deploy-Route-Target** cannot be found, calling this mode will return an error code: `{"code": 1006, "msg": "route target not found"}`.
 
 ## Contact Us
 
-If you have any questions or suggestions while using **Glows.ai**, please reach out via email, Discord, or Line.
+If you have any questions or suggestions while using Glows.ai, feel free to contact us via email, Discord, or Line.
 
 **Email:** [support@glows.ai](mailto:support@glows.ai)
 
