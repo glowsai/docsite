@@ -3,8 +3,7 @@ id: auto-deploy-usage
 sidebar_position: 17
 ---
 
-
-## Glows.ai Auto Deploy Use Case
+# Glows.ai Auto Deploy Use Case
 
 Typically, deploying GPU-based services requires manually creating instances before use and releasing them afterward. This process becomes inefficient and inconvenient when GPU workloads are intermittent or request-driven.  
 
@@ -17,7 +16,7 @@ Currently, you can customize the `Instance Idle Retention Period` and the `Maxim
 - **Instance Idle Retention Period**: The duration an instance will remain active without receiving new requests before being automatically released.
 - **Maximum Number of Instances**: The maximum number of instances that can be launched under a single Auto Deploy.
 
-For scenarios compatible with previous logic, **Random** and **Round Robin** modes are also supported (for details on usage, refer to the [Advanced Usage](../c/69257edf-67c8-8327-8213-f905bf4d7d68#高級用法)).
+For scenarios compatible with previous logic, **Random** and **Round Robin** modes are also supported (for details on usage, refer to the [Advanced Usage](#advanced-usage)).
 
 ## Basic Usage
 
@@ -91,7 +90,7 @@ For use cases requiring compatibility with the previous handling logic, the `Ran
    - If no instances are running, an error code will be returned: `{"code": 1006, "msg": "route target not found"}`
 3. **round-robin**: Forward the request to the next instance in sequence and return the result.
    - If no instances are running, an error code will be returned: `{"code": 1006, "msg": "route target not found"}`
-4. **{Deploy-Route-Target}**: Forward the request to a specific instance and return the result.
+4. **`{Deploy-Route-Target}`**: Forward the request to a specific instance and return the result.
    - If the specified **Deploy-Route-Target** cannot be found, an error code will be returned: `{"code": 1006, "msg": "route target not found"}`
 
 In all four modes, the response header will include `Deploy-Route-Target`, indicating which instance the request has been forwarded to, making it easier for continuous requests.
@@ -157,7 +156,7 @@ When two or more instances are running, making consecutive requests using this m
 
 Note that if no instances have been started by this Auto Deploy, requesting this mode will return an error code: `{"code": 1006, "msg": "route target not found"}`.
 
-### {Deploy-Route-Target} Mode
+### `{Deploy-Route-Target}` Mode
 
 The request will be forwarded to a specified instance and return the result.
 

@@ -3,8 +3,7 @@ id: auto-deploy-usage
 sidebar_position: 17
 ---
 
-
-## Glows.ai Auto Deploy 使用案例
+# Glows.ai Auto Deploy 使用案例
 
 使用GPU部署服務通常需要我們手動創建實例，在使用完畢後還得手動釋放實例，如果比較零散使用GPU服務，這種模式操作起來就會比較繁複。
 
@@ -99,7 +98,7 @@ curl -X POST "https://tw-01.sgw.glows.ai:xxxxxx/v1/audio/speech" \
 
 - 如果沒有正在運行實例，會返回錯誤代碼：  `{"code": 1006, "msg": "route target not found"}`
 
-4> **{Deploy-Route-Target}** : 將請求轉發給指定的實例，並返回接口調用結果。
+4> **`{Deploy-Route-Target}`** : 將請求轉發給指定的實例，並返回接口調用結果。
 
 - 如果沒有找到對應 **Deploy-Route-Target**，會返回錯誤代碼： `{"code": 1006, "msg": "route target not found"}`
 
@@ -166,7 +165,7 @@ curl -i \
 
 需要注意，如果當前沒有通過該 Auto Deploy 開啟的實例，調用該模式會返回錯誤代碼： `{"code": 1006, "msg": "route target not found"}`。
 
-### {Deploy-Route-Target}  模式
+### `{Deploy-Route-Target}` 模式
 
 將請求轉發給指定的實例，並返回接口調用結果。
 
