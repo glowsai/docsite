@@ -194,78 +194,78 @@ Glows.ai にログイン後、画面右上のユーザー情報をクリック�
 
 ## 一般メンバー向けマニュアル
 
-普通成員僅支持以下功能：創建實例（Create New）、實例管理(Instances)、Datadrive管理(Datadrive)、Snapshot管理(Snapshots)、Storage管理(Storage Space)、帳單查詢(Billing)、個人信息修改(Profile)，和Glows.ai主網操作一致，具體請看[Glows.ai使用手冊](https://docs.glows.ai/docs/create-new)。
+一般メンバーは以下の機能のみ利用可能です：インスタンス作成（Create New）、インスタンス管理 (Instances)、Datadrive 管理 (Datadrive)、Snapshot 管理 (Snapshots)、Storage 管理 (Storage Space)、請求確認 (Billing)、個人情報編集 (Profile)。操作は Glows.ai メインサイトと同様です。詳細は[Glows.ai の使用マニュアルをご参照ください](https://docs.glows.ai/docs/create-new)。
 
-![image-20251112112106430](../../../../../docs/docs-images/p05team/31.png)
+![31](../../../../../docs/docs-images/p05team/31.png)
 
-### 加入團隊
+### チームに参加
 
-普通成員拿到團隊創建者或管理員創建的成員帳號後可以從兩個入口加入團隊。
+一般メンバーは、チーム作成者または管理者から発行されたメンバーアカウントを取得後、2つの入口からチームに参加できます。
 
-#### 1> 團隊版本連結登入
+#### 1> チーム版リンクからログイン
 
-瀏覽器訪問下面團隊登錄介面，輸入團隊賬號密碼。
+ブラウザで以下のチームログイン画面にアクセスし、チームアカウントとパスワードを入力します。
 
 ```bash
 https://platform.glows.ai/team/login
 ```
 
-![image-20251112103024351](../../../../../docs/docs-images/p05team/32.png)
+![32](../../../../../docs/docs-images/p05team/32.png)
 
-#### 2>  Glows.ai 主網進入
+#### 2>  Glows.ai 本サイトからのアクセス
 
-登錄 Glows.ai 主網後，點擊右上角個人頭像，選擇 **`Teams`->`Join Team`**。
+Glows.ai 本サイトにログイン後、右上のアバターをクリックし、 **`Teams`->`Join Team`** を選択します。
 
-![image-20251112103513271](../../../../../docs/docs-images/p05team/33.png)
+![33](../../../../../docs/docs-images/p05team/33.png)
 
-在 Join Team 介面輸入團隊賬號密碼，即可將Glows.ai主網賬號和團隊賬號綁定，後面就可以直接在主網切換到團隊了。
+Join Team 画面でチームのアカウントとパスワードを入力すると、Glows.ai 本サイトのアカウントとチームアカウントが紐付けられます。以後、本サイト上で直接チームに切り替えることが可能です。
 
-![image-20251104150357896](../../../../../docs/docs-images/p05team/34.png)
+![34](../../../../../docs/docs-images/p05team/34.png)
 
-不論用哪一種方式登入，首次登錄後會需要重置密碼。
+どの方法でログインしても、初回ログイン時にはパスワードのリセットが必要です。
 
-![image-20251106165855089](../../../../../docs/docs-images/p05team/35.png)
+![35](../../../../../docs/docs-images/p05team/35.png)
 
-### 獲取Credits
+### Creditsの取得
 
-團隊成員如果需要 Credits，請向團隊創建者或者管理員申請。
+チームメンバーがCreditsを必要とする場合は、チームの作成者または管理者に申請してください。
 
-### 創建實例
+### インスタンスの作成
 
-點擊 `Create New`，選擇自己需要租用的顯卡和環境。
+`Create New`をクリックし、必要なGPUと環境を選択してください。
 
-![image-20251112130821272](../../../../../docs/docs-images/p05team/36.png)
+![36](../../../../../docs/docs-images/p05team/36.png)
 
-下滑可以看到 Datadrive 相關配置，設置好後點擊 `Complete Checkout` 即可完成實例創建。
+下にスクロールすると Datadrive 関連の設定が表示されます。設定が完了したら `Complete Checkout` をクリックしてインスタンスの作成を完了します。
 
-- **Unit Qty:** 租用顯卡數量，如果設置為2，則表示租用2張顯卡
-- **Mount Personal Datadrive:** （可選擇）可以選是否掛載個人Datadrive
-- **Mount Team Datadrive:** （默認）自動掛著團隊網盤到實例中的 `/team_data` 目錄下，普通成員只有可讀權限
-- **Bind Public IP Address:** 綁定固定IP，如有需要請聯繫Glows.ai小幫手
+- **Unit Qty:** レンタルするGPUの数。2に設定すると2枚のGPUをレンタルすることを意味します。
+- **Mount Personal Datadrive:** （オプション）個人のDatadriveをマウントするかどうかを選択できます。
+- **Mount Team Datadrive:** （デフォルト）チームのクラウドドライブをインスタンス内の `/team_data` ディレクトリに自動マウントします。一般メンバーは読み取り専用です。
+- **Bind Public IP Address:** 固定IPをバインドします。必要な場合は Glows.ai サポートにお問い合わせください。
 
-![image-20251112131149657](../../../../../docs/docs-images/p05team/37.png)
+![37](../../../../../docs/docs-images/p05team/37.png)
 
-### 實例管理
+### インスタンス管理
 
-實例啟動成功後，可以在 Instances 介面看到新啟動的實例，點擊實例可以看到實例更詳細的信息和更多操作。
+インスタンスが正常に起動した後、Instances インターフェースで新しく起動したインスタンスを確認できます。インスタンスをクリックすると、詳細情報や追加操作を確認できます。
 
-- **Access:** 實例的訪問信息，比較常用的是 SSH(Port 22) 和 Jupyterlab(Port 8888)
-- **Monitor:** 實例CPU、GPU資源監控
-- **Billing:** 實例費用明細
-- **Config:** 實例配置說明（實例啟動鏡像軟體說明）
-- **Hardware:** 實例硬件配置說明
+- **Access:** インスタンスへのアクセス情報。一般的には SSH（Port 22）や JupyterLab（Port 8888）が使用されます。
+- **Monitor:** インスタンスの CPU、GPU リソース監視。
+- **Billing:** インスタンスの費用明細。
+- **Config:** インスタンスの設定情報（起動イメージやソフトウェア説明）。
+- **Hardware:** インスタンスのハードウェア構成情報。
 
-使用完成後，可以在 `Action` 中可以選擇 `Release` 釋放實例，或者 `Take Snapshot` 創建一個快照。
+使用後は、 `Action` で `Release` を選択してインスタンスを解放するか、 `Take Snapshot` を選択してスナップショットを作成できます。
 
-![image-20251112135257508](../../../../../docs/docs-images/p05team/38.png)
+![38](../../../../../docs/docs-images/p05team/38.png)
 
-### 其他功能
+### その他の機能
 
-Datadrive管理(Datadrive)、Snapshot管理(Snapshots)、Storage管理(Storage Space)、帳單查詢(Billing)、個人信息修改(Profile)與主網操作一致，請參考一下教程內容：[Glows.ai使用手冊](https://docs.glows.ai/docs/create-new)
+Datadrive 管理 (Datadrive)、Snapshot 管理 (Snapshots)、Storage 管理 (Storage Space)、請求確認 (Billing)、個人情報編集 (Profile) は、Glows.ai メインサイトと同様の操作方法です。詳細な操作方法については、[Glows.ai マニュアル をご参照ください](https://docs.glows.ai/docs/create-new)。
 
-## 聯繫我們
+## お問い合わせ
 
-如果您在使用 Glows.ai 的過程中有任何疑問或者建議，歡迎通過郵件、Discord或者Line聯繫我們。
+Glows.ai のご利用中にご不明点やご意見がある場合は、メール、Discord、または Line を通じてご連絡ください。
 
 **Email:** [support@glows.ai](mailto:support@glows.ai)
 
