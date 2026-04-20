@@ -48,6 +48,7 @@ const config: Config = {
           path: "docs",
           routeBasePath: "/",
           sidebarPath: "./sidebars.ts",
+          exclude: ["**/docs-images/**"],
           breadcrumbs: false,
         },
         blog: false,
