@@ -1,9 +1,9 @@
 ---
-id:  m0-db-usage
+id: m0-db-usage
 sidebar_position: 18
 ---
 
-## Glows.ai 遠端 PostgreSQL 資料庫 Matrix0 使用教學
+# Glows.ai 遠端 PostgreSQL 資料庫 Matrix0 使用教學
 
 ## 功能介紹
 
@@ -149,8 +149,8 @@ LIMIT 2;
 
 ```sql
 -- 更新某筆記錄的向量
-UPDATE embeddings 
-SET embedding = array_fill(0.5, ARRAY[4])::vector 
+UPDATE embeddings
+SET embedding = array_fill(0.5, ARRAY[4])::vector
 WHERE id = 1;
 
 -- 驗證更新
@@ -187,7 +187,7 @@ import psycopg2
 
 conn = psycopg2.connect(
     host="172.172.1.1",
-    port=3306,  
+    port=3306,
     user="glowsai",
     password="xxxxx",
     dbname="my_project_db"
