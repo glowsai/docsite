@@ -26,23 +26,53 @@ Glows.ai provides a managed PostgreSQL database service with the following featu
 - Data analytics projects
 - Any project requiring a database
 
+Start building and testing with Matrix0 while we continue improving its performance, scalability, and developer experience.
+
+Billing is not enabled during Alpha. Usage-based pricing will be introduced as Matrix0 moves toward broader availability.
+
 ## Service Activation
 
-During the beta testing, the service is only available to users who have purchased a Public IP. If you need testing, you can [reach out to us](#Contact Us) to enable access.
+After logging in to the Glows.ai platform, you can directly access Matrix0 through the following entry point.
+
+```bash
+https://matrix0.glows.ai
+```
+
+Open the Matrix0 official website through your browser. Currently, Matrix0 and the Glows.ai Platform share the same account system. If you have not logged in to the Platform, click the `Go to Platform sign-in` button to complete the login process. After successful authentication, you can start using Matrix0.
+
+If the login status is not updated immediately, you can click `I have signed in - refresh` in the interface to refresh the authentication status.
+
+![image-20260901161946257](../docs-images/p18/image-20260901161946257.png)
+
+If you encounter any issues during use or have new requirements, you can [contact us here](#Contact Us) for assistance.
+
+## Creating a Project
+
+After logging in to Matrix0, click `Create Project` to create a new project. Enter the project name and description, then click `Create` to complete the project creation.
+
+![image-20260901162551025](../docs-images/p18/image-20260901162551025.png)
+
+After the project is created, you can view the basic project information. To use the service officially, you need to go to [Glows.ai Platform](https://platform.glows.ai/create) to create an instance first, and then return to this interface to perform the binding operation under Instance.
+
+![image-20260901165936378](../docs-images/p18/image-20260901165936378.png)
 
 ## Creating an Instance
 
-Create instances on-demand in Glows.ai. You can refer to the [tutorial](https://docs.glows.ai/docs/create-new). This guide uses the **CUDA12.8 Torch2.8.0 Base** (img-6ypgvgpw) image.
+Create an instance on-demand in Glows.ai. You can refer to the [tutorial](https://docs.glows.ai/docs/create-new). This guide uses the **CUDA12.8 Torch2.8.0 Base** (img-6ypgvgpw) image.
 
-In `Create New`, select Workload Type as Inference GPU -- 4090. First select the image **CUDA12.8 Torch2.8.0 Base**, which has been preconfigured by the official team with the basic environment required for AI projects (CUDA, PyTorch, etc.).
+In the `Create New` interface, select **Inference GPU -- 4090** as the Workload Type. Then select the **CUDA12.8 Torch2.8.0 Base** image, which has been preconfigured by the official team with the basic environment required for AI projects, including CUDA, PyTorch, and other dependencies.
 
 ![ ](../docs-images/p18/001.png)
 
-You can configure `Unit Qty` (number of GPUs) and `Mount Datadrive` (Glowsai cloud storage) as needed. If you need to use database functionality, you need to click the `Bind` button under `Bind Public IP Address` to configure a static IP.
+You can configure `Unit Qty` (number of GPUs) and `Mount Datadrive` (Glows.ai cloud storage) according to your requirements.
+
+**Currently, the Matrix0 database functionality only supports usage under the Bind IP mode. When creating an instance, click the `Bind` button under `Bind Public IP Address` to configure a static IP address.**
 
 ![ ](../docs-images/p18/002.png)
 
-After the instance is started, send the instance ID (ins-xxxx) to [glows assistant](https://sass-ai.chatshare.biz/c/69e1af93-1f10-8330-a72c-a5b1705349ba#聯繫我們). Our engineers to configure it for you and then provide the internal database connection method.
+After the instance starts successfully, return to the Matrix0 interface. Click **Instance -- Bind Instance** under the project, select the instance you have just created with the Bind IP configuration enabled, and then click **Bind Instance** to complete the binding operation.
+
+![image-20260901171354952](../docs-images/p18/image-20260901171354952.png)
 
 You will receive the following information:
 
@@ -53,6 +83,15 @@ You will receive the following information:
 | `USER`     | Username         | `glowsai`     |
 | `PASSWORD` | Password         | `********`    |
 | `DATABASE` | Default database | `postgres`    |
+
+![image-20260901171749704](../docs-images/p18/image-20260901171749704.png)
+
+**Note:**
+
+1. When you release an instance, or manually unbind the instance from the Matrix0 interface, the binding record will be deleted. However, the backend database data will not be deleted, and the database can still be rebound and used when a new instance is created.
+2. If the Bind IP is no longer needed, you must manually release it to stop billing. Releasing the Bind IP will not affect the Matrix0 database data.
+
+![image-20260901170814127](../docs-images/p18/image-20260901170814127.png)
 
 ## Basic Usage
 
@@ -305,22 +344,17 @@ After the service is started, you can also log in normally to view LiteLLM backe
 
 ## FAQs
 
-**1、How do I use the Matrix0 DB service on Glows.ai？**
+**1. What is the current usage workflow?**
 
-To use the Matrix0 DB service on Glows.ai, follow these steps:
+The service is currently available. Follow the [Service Activation](#Service Activation) steps in the tutorial to log in and create a Matrix0 project. Then follow the [Creating an Instance](#Creating an Instance) steps to create an instance on the Glows.ai Platform with a Public IP assigned.
 
-Contact us to enable Matrix0 DB access (requires a Glows.ai Public IP)
-Start an instance
-Configure Bind Public IP based on the tutorial
-Provide your instance ID to our team
-Our engineers will configure the internal database connection
-You will receive the database connection details inside your instance
+After that, return to the Matrix0 interface and complete the **Bind Instance** operation. Once the binding is completed, you can obtain the connection information required to access the Matrix0 database within the instance.
 
-This process ensures a secure and correctly configured database environment.
+**2. Can the IP address and port be customized for remote database connections?**
 
-**2、Can I customize the IP and port for the remote database connection?**
+Yes. The IP address and port can be customized, but manual configuration by our engineers is required.
 
-Yes, Glows.ai allows custom IP and port configuration for remote database connections. This flexibility helps match your existing infrastructure or deployment requirements. Simply provide your preferred IP and port, and we will configure it for you.
+If you have customization requirements, please [contact us here](#Contact Us) and provide the IP address and port you would like to use.
 
 **3、How do I access the LiteLLM WebUI after deployment?**
 
@@ -333,6 +367,10 @@ Enter:
 - Instance Service Port (e.g., 4001)
 - Public IP Port
   Click `Create`. Once configured, you can access the service within the instance via Glows.ai Public IP + Public IP Port from the public network.
+
+![ ](../docs-images/p18/014.png)
+
+## Contact Us
 
 If you have any questions or suggestions while using Glows.ai, feel free to contact us via email, Discord, or Line.
 

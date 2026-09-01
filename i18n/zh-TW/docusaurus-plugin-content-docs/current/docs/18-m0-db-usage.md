@@ -26,33 +26,74 @@ Glows.ai 提供託管式 PostgreSQL 資料庫服務，具有以下特性：
 - 資料分析專案
 - 任何需要資料庫的專案
 
+歡迎開始使用 Matrix0 進行開發與測試，我們將持續改善其效能、可擴充性以及整體開發者體驗。
+
+**目前 Alpha 階段尚未啟用計費。待 Matrix0 逐步擴大開放後，將正式採用按使用量計費模式。**
+
 ## 開通服務
 
-服務內測期間，僅提供給有購買 Public IP 的客戶使用。如有測試需求，可以[點此這裡聯繫我們](#聯繫我們)開通。
+登錄 Glows.ai 平臺後，直接訪問以下 Matrix0 服務入口即可。
+
+```bash
+https://matrix0.glows.ai
+```
+
+在瀏覽器中打開上述 Matrix0 服務入口。目前 Matrix0 與 Glows.ai Platform 共用同一套帳號體系。如果您尚未登入 Platform，可以先點擊 `Go to Platform sign-in` 按鈕完成登入。登入成功後，即可開始使用 Matrix0。
+
+如果登入狀態未及時更新，您也可以在介面中點擊 `I have signed in - refresh` 按鈕刷新登入狀態。
+
+![image-20260901161946257](../../../../../docs/docs-images/p18//image-20260901161946257.png)
+
+如果使用過程中遇到任何問題，或有新的需求，可以[點此聯繫我們](#聯繫我們)進行諮詢。
+
+## 創建項目
+
+登入 Matrix0 後，可以點擊 `Create Project` 創建項目。輸入項目名稱和描述，然後點擊 `Create` 即可完成創建。
+
+![image-20260901162551025](../../../../../docs/docs-images/p18//image-20260901162551025.png)
+
+項目創建完成後，可以查看項目的基礎信息。正式使用前，需要前往 [Glows.ai Platform](https://platform.glows.ai/create) 創建實例，然後返回 Matrix0 介面，在 Instance 頁面完成綁定操作。
+
+![image-20260901165936378](../../../../../docs/docs-images/p18//image-20260901165936378.png)
 
 ## 創建實例
 
-我們在 Glows.ai 按需建立一個實例，可以參考[教學](https://docs.glows.ai/docs/create-new)，本教學使用的 **CUDA12.8 Torch2.8.0 Base**(img-6ypgvgpw) 映像檔。
+您可以根據需求在 Glows.ai 創建一個實例，具體操作可以參考[教程](https://docs.glows.ai/docs/create-new)。本教程使用 **CUDA12.8 Torch2.8.0 Base**（img-6ypgvgpw）映像。
 
-在 `Create New` 介面 Workload Type 選擇 Inference GPU -- 4090，先選擇映像檔 **CUDA12.8 Torch2.8.0 Base**，該映像檔已由官方預先配置好AI項目需要的基礎環境（CUDA、Pytorch 等)。
+在 `Create New` 介面中，將 Workload Type 選擇為 **Inference GPU -- 4090**。首先選擇映像 **CUDA12.8 Torch2.8.0 Base**，該映像已由官方預先配置好 AI 項目所需的基礎環境，包括 CUDA、PyTorch 等依賴。
 
 ![ ](../../../../../docs/docs-images/p18/001.png)
 
-可以按需設定 `Unit Qty` (GPU 顯示卡數量)，`Mount Datadrive`（Glowsai 雲端儲存）。如果需要使用資料庫功能，需要再點擊 `Bind Public IP Address` 下的 `Bind`按鈕，配置固定 IP。
+您可以根據需求配置 `Unit Qty`（GPU 顯示卡數量）以及 `Mount Datadrive`（Glows.ai 雲端儲存）。
+
+**目前 Matrix0 資料庫功能僅支持在 Bind IP 模式下使用。創建實例時，需要點擊 `Bind Public IP Address` 下方的 `Bind` 按鈕，以配置固定 IP 地址。**
 
 ![ ](../../../../../docs/docs-images/p18/002.png)
 
-實例啟動完成後，將實例 ID(ins-xxxx)發送給 [glows小幫手](https://sass-ai.chatshare.biz/c/69e1af93-1f10-8330-a72c-a5b1705349ba#聯繫我們)，待工程師為您配置後，提供資料庫內網連線方式。
+實例啟動完成後，返回 Matrix0 介面。點擊項目下的 **Instance -- Bind Instance**，選擇剛剛創建並已配置 Bind IP 的實例，最後點擊 **Bind Instance** 完成綁定操作。
 
-您將收到以下資訊：
+![image-20260901171354952](../../../../../docs/docs-images/p18//image-20260901171354952.png)
 
-| 參數       | 說明         | 範例          |
+您將獲取以下資訊：
+
+| 參數       | 說明         | 示例          |
 | ---------- | ------------ | ------------- |
-| `HOST`     | 資料庫位址   | `172.172.1.1` |
+| `HOST`     | 資料庫地址   | `172.172.1.1` |
 | `PORT`     | 資料庫連接埠 | `3306`        |
 | `USER`     | 使用者名稱   | `glowsai`     |
 | `PASSWORD` | 密碼         | `********`    |
 | `DATABASE` | 預設資料庫   | `postgres`    |
+
+![image-20260901171749704](../../../../../docs/docs-images/p18//image-20260901171749704.png)
+
+**注意：**
+
+1. 當您釋放實例，或在 Matrix0 介面手動解除綁定後，綁定記錄會被刪除。但後端資料庫中的數據不會被刪除，下次創建實例後仍可重新綁定使用。
+2. 如果 Bind IP 不再使用，需要手動釋放後才會停止計費。釋放 Bind IP 不會影響 Matrix0 資料庫中的數據。
+
+![image-20260901170814127](../../../../../docs/docs-images/p18//image-20260901170814127.png)
+
+------
 
 ## 基礎使用
 
@@ -303,13 +344,15 @@ LiteLLM 會自動依照 `.env` 中的 `DATABASE_URL` 連線資料庫，並初始
 
 ## FAQs
 
-**1、現在使用流程是什麼樣的？**
+**1、目前使用流程是什麼樣的？**
 
-先聯繫我們開通使用權限（配備一個Glowsai Public IP），啟動實例按教學步驟配置 Bind Public IP，然後告訴我們您的實例Id，我們會請工程師配置資料庫內網連線，再告訴您實例內連線方式。
+目前服務已正式上線。您可以按照教程中的[開通服務](#開通服務)步驟登入並創建 Matrix0 項目，然後按照[創建實例](#創建實例)步驟在 Glows.ai Platform 創建一個配置 Public IP 的實例。最後返回 Matrix0 介面完成 **Bind Instance** 操作，即可獲取實例內連接 Matrix0 資料庫所需的信息。
 
-**2、遠端資料庫連線方式中 ip 和 port 是否可以自訂？**
+**2、遠端資料庫連線方式中的 IP 和 Port 是否可以自訂？**
 
-可以自訂，您告訴我們您期望使用的 ip 和 port 即可。
+可以自訂，但需要由工程師進行手動調整。
+
+如果有自訂需求，請[點擊這裡聯繫我們](#聯繫我們)，並提供您期望使用的 IP 和 Port 配置信息即可。
 
 **3、在 Glows.ai 部署 LiteLLM ，怎麼存取 WebUI？**
 

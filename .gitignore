@@ -15,6 +15,9 @@ pnpm-debug.log*
 # VSCode 設定
 .vscode/
 
+# Jupyterlab
+.ipynb_checkpoints/
+
 # 其他常見忽略檔案
 .env
 .env.local
