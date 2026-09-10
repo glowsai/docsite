@@ -1,9 +1,13 @@
 ---
-id: model-route
+id: model-route-usage
 sidebar_position: 19
 ---
 
-# Glows.ai 多模型路由服務 Model Route 使用教學
+
+
+# Model Route
+
+## Glows.ai 多模型路由服務 Model Route 使用教學
 
 ## 什麼是 Glows.ai Model Route 服務？
 

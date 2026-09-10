@@ -3,7 +3,9 @@ id: model-route-usage
 sidebar_position: 19
 ---
 
-# Glows.ai Multi-Model Routing Service: Model Route Tutorial
+# Model Route
+
+## Glows.ai Multi-Model Routing Service: Model Route Usage Guide
 
 ## What Is the Glows.ai Model Route Service?
 

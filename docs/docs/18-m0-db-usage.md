@@ -3,7 +3,11 @@ id: m0-db-usage
 sidebar_position: 18
 ---
 
-# Glows.ai Remote PostgreSQL Database Matrix0 Usage Guide
+
+
+# Matrix0
+
+## Glows.ai Remote PostgreSQL Database Matrix0 Usage Guide
 
 ## Feature Overview
 

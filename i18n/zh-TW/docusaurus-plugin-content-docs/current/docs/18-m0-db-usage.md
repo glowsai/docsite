@@ -3,7 +3,11 @@ id: m0-db-usage
 sidebar_position: 18
 ---
 
-# Glows.ai 遠端 PostgreSQL 資料庫 Matrix0 使用教學
+
+
+# Matrix0
+
+## Glows.ai 遠端 PostgreSQL 資料庫 Matrix0 使用教學
 
 ## 功能介紹
 
