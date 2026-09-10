@@ -11,38 +11,54 @@ sidebar_position: 13
 
 ## **Space Storage**
 
-頁面最上方顯示 **Space Storage** 的比例條，清楚展示當前的使用情況，
+頁面最上方顯示 **Space Storage** 的比例條，清楚展示當前的使用情況，**Storage Space** 總空間可以讓你分配至三種用途，分別是 **Snapshot**, **Datadrive** 以及**Image**。
 
 例如：
 
-- **Using 6.63GiB of 50GiB**
-- **Expires on 2025-01-24**
-  ![Space storage](../../../../../docs/docs-images/p10/01.Space%20storage.jpg)
+- **Using 17.1GB of 50GB**
+- **Expires on 2026-09-28**
 
-### **升級儲存計畫**
-
-點擊 `Upgrade` 按鈕進入 **Select Storage Plan** 頁面，您可以選擇不同容量方案，方案將對應需要扣除的 **Credit**，所有方案的有效期均為 **30 Days**。選擇方案後，下方會顯示一個 **Summary**，包括：
-
-- **Storage**：選擇的存儲方案詳情。
-- **Expire**：方案的到期日。
-- **Total Price**：總價格。
-
-### **計費調整**
-
-- **升級計畫**：以當前方案與新方案價格的差異作為每日調整的計算基礎。
-- **降級計畫**：不會退還價格差額。
-
-選擇方案後，您可以按 `Charge` 按鈕進行儲值，或直接按 `Modify Plan` 扣除相應的 **Credit**。
-
-![Upgrade](../../../../../docs/docs-images/p10/02.Upgrade.jpg)
+圖示說明了您的 **Snapshot**, **Datadrive** 以及 **Image** 三者加總後，佔用了17.1GB。
+  ![Space storage](../../../../../docs/docs-images/p10/01.png)
 
 ## **Quota**
 
-點擊`Modify` 按鈕，可以調整 **Snapshot** 和 **Data Drive** 可使用的存儲空間。
-![Modify](../../../../../docs/docs-images/p10/03.Modify%20Quota.jpg)
+在主頁下方，您可以看到 **Snapshot**, **Datadrive** 以及 **Image** 的各別存儲使用情況。
 
-調整後，您將在頁面上看到 **Snapshot** 和 **Data Drive** 的個別存儲使用情況，例如：
+例如：
 
-- **Using 0.00GB of 3GB 0.00%**
+- **Image** 區塊：**Using 3.79 GB of 20 GB**。
+- **Snapshot** 區塊：**Using 13.30 GB of 18 GB**。
+- **Datadrive** 區塊：**Using 0 GB of 4 GB**。
+![Space storage](../../../../../docs/docs-images/p10/02.png)
 
-![Quota list](../../../../../docs/docs-images/p10/04.Quota%20list.jpg)
+
+### **訂閱儲存方案**
+
+點擊 `Upgrade` 按鈕進入 **Select Storage Plan** 頁面。
+ ![Space storage](../../../../../docs/docs-images/p10/03.png)
+
+您可以選擇不同容量方案，方案將對應需要扣除的 **Credit**，所有方案的有效期均為 **30 Days**。選擇方案後，下方會顯示一個 **Summary**，包括：
+- **Storage**：選擇的存儲方案大小。
+- **Expire**：方案的到期日。
+- **Total Price**：總價格。
+![Space storage](../../../../../docs/docs-images/p10/04.png)
+
+## **更改訂閱方案**
+
+例如，當前已訂閱的方案為 `50GB`，您可以在訂閱期間內變更方案，例如： `訂閱小於 50GB 的方案`、`再次訂閱 50GB 方案`、`訂閱大於 50GB 的方案`。
+1. **降級方案**：到期日不變，不會退還價格差額。請注意，在降級以前，您的 **Storage Space** 已使用的空間，必須小於您的降級選項的方案空間大小，否則將無法點選。降級前請先清除您不再使用的資料。
+2. **選擇相同大小方案**：將使相同方案再延長 **30 Days**。將再次收取完整訂閱費用。
+3. **升級方案**：升級方案後到期日不變。計費方式：以當前方案和新方案價格的價差，乘上方案的剩餘天數。
+![Space storage](../../../../../docs/docs-images/p10/05.png)
+
+## **Modify**
+
+點擊 `Modify` 按鈕，您可以自由調整 **Snapshot**, **DataDrive** 和 **Image** 可使用的存儲空間。
+![Modify](../../../../../docs/docs-images/p10/06.png)
+
+點擊 `Modify` 按鈕後，您將在頁面上看到 **Snapshot**, **DataDrive** 和 **Image** 的各別存儲使用情況。
+- 您可以自由分配 **Snapshot**, **Datadrive** 和 **Image** 各自能使用的空間。
+- **Datadrive** 需進一步安排其不同區域的空間，例如 **TW-03**, **TW-04** ..等區域各別可使用的空間。
+- 未被 **Snapshot** 及 **Datadrive** 使用而剩餘的空間，將會分配給 **Image**。
+![Quota list](../../../../../docs/docs-images/p10/07.png)

@@ -27,8 +27,9 @@ Click the `Upgrade` button to enter the **Select Storage Plan** page, where you 
 
 ### **Billing Adjustment**
 
-- **Upgrade Plan**: The daily adjustment is calculated based on the price difference between the current plan and the new plan.
-- **Downgrade Plan**: No price difference refund is provided.
+- **Upgrade Plan**: The expiration date remains unchanged, total storage capacity increases, and you will be charged based on the remaining time multiplied by the price difference between the plans.
+- **Downgrade Plan**: The expiration date remains unchanged, total storage capacity decreases, and no refunds are issued for the price difference.
+- **Renew same size plan:** Total storage capacity remains unchanged, and the expiration date is extended by 30 days.
 
 After selecting a plan, you can proceed with the payment by clicking the `Charge` button or directly deduct the corresponding **Credit** by clicking `Modify Plan`.
 
