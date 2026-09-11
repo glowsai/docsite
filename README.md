@@ -29,3 +29,31 @@ Please add the following content to the very top of your document:
 id: dd-app
 ---
 ```
+
+-----
+
+## In-Page Anchor Link Rules
+
+Docusaurus generates a heading `id` from the heading text using these rules:
+
+1. Convert to **lowercase**.
+2. Replace **spaces with hyphens** (`-`).
+3. **Remove punctuation** such as `:`, `?`, `.`, `,`, `(`, `)`, `!`.
+4. Non-ASCII characters (Chinese, Japanese, etc.) are kept as-is.
+
+An anchor link must point to the generated `id`, **not** the raw heading text. Anchors containing spaces or uppercase letters will not work.
+
+| Heading | Correct anchor | Wrong anchor |
+|---|---|---|
+| `## Create a Model Route` | `[link](#create-a-model-route)` | `[link](#Create a Model Route)` |
+| `## 建立 Model Route` | `[link](#建立-model-route)` | `[link](#建立 Model Route)` |
+| `## Contact Us` | `[link](#contact-us)` | `[link](#Contact Us)` |
+| `## 聯繫我們` | `[link](#聯繫我們)` | — |
+
+> **Tip**: To keep anchors stable across languages, you can assign an explicit `id` to a heading with `{#custom-id}`, for example `## 建立 Model Route {#create-a-model-route}`. Every translation can then reuse the same anchor.
+
+To find anchors that contain spaces (a common mistake), run:
+
+```bash
+grep -rnE '\]\(#[^)]* [^)]*\)' docs i18n
+```

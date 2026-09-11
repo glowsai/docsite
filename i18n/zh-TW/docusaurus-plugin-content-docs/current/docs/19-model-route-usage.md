@@ -176,11 +176,11 @@ CCSwitch 安裝包下載地址：[點擊進入](https://github.com/farion1231/cc
 
 **1、目前使用流程是什麼樣的？**
 
-目前服務已正式上線。您可以按照教學中的[建立 Model Route](#建立 Model Route)步驟建立 Model Route 並獲取 API URL 和 API KEY，然後按照[接口 curl 使用說明](#接口 curl 使用說明)和[Agent 配置 Model Route](#Agent 配置 Model Route)步驟操作即可開始使用。
+目前服務已正式上線。您可以按照教學中的[建立 Model Route](#建立-model-route)步驟建立 Model Route 並獲取 API URL 和 API KEY，然後按照[接口 curl 使用說明](#接口-curl-使用說明)和[AI Agent 配置 Model Route](#ai-agent-配置-model-route)步驟操作即可開始使用。
 
 **2、支援在 Codex 和Claude Code 內使用嗎？**
 
-支援，目前 Model Route 除了支援 Codex、Claude Code，還支援常見的 Hermes Agent、OpenCode、OpenClaw 等AI Agent 工具配置使用，使用參考[AI Agent 配置 Model Route](#AI Agent 配置 Model Route)。
+支援，目前 Model Route 除了支援 Codex、Claude Code，還支援常見的 Hermes Agent、OpenCode、OpenClaw 等AI Agent 工具配置使用，使用參考[AI Agent 配置 Model Route](#ai-agent-配置-model-route)。
 
 ## 聯繫我們
 

@@ -48,7 +48,7 @@ If the login status is not updated immediately, you can click `I have signed in 
 
 ![image-20260901161946257](../docs-images/p18/image-20260901161946257.png)
 
-If you encounter any issues during use or have new requirements, you can [contact us here](#Contact Us) for assistance.
+If you encounter any issues during use or have new requirements, you can [contact us here](#contact-us) for assistance.
 
 ## Creating a Project
 
@@ -350,7 +350,7 @@ After the service is started, you can also log in normally to view LiteLLM backe
 
 **1. What is the current usage workflow?**
 
-The service is currently available. Follow the [Service Activation](#Service Activation) steps in the tutorial to log in and create a Matrix0 project. Then follow the [Creating an Instance](#Creating an Instance) steps to create an instance on the Glows.ai Platform with a Public IP assigned.
+The service is currently available. Follow the [Service Activation](#service-activation) steps in the tutorial to log in and create a Matrix0 project. Then follow the [Creating an Instance](#creating-an-instance) steps to create an instance on the Glows.ai Platform with a Public IP assigned.
 
 After that, return to the Matrix0 interface and complete the **Bind Instance** operation. Once the binding is completed, you can obtain the connection information required to access the Matrix0 database within the instance.
 
@@ -358,7 +358,7 @@ After that, return to the Matrix0 interface and complete the **Bind Instance** o
 
 Yes. The IP address and port can be customized, but manual configuration by our engineers is required.
 
-If you have customization requirements, please [contact us here](#Contact Us) and provide the IP address and port you would like to use.
+If you have customization requirements, please [contact us here](#contact-us) and provide the IP address and port you would like to use.
 
 **3、How do I access the LiteLLM WebUI after deployment?**
 
