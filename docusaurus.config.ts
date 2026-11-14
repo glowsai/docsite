@@ -100,7 +100,7 @@ function englishLocaleAliasRedirectsPlugin(context: LoadContext): Plugin {
 
 const config: Config = {
   title: "Glows.ai",
-  favicon: "img/favicon.ico",
+  favicon: "img/favicon.png",
 
   // Set the production url of your site here
   url: "https://docs.glows.ai",
