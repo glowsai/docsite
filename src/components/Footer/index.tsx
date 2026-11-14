@@ -120,7 +120,7 @@ export default function Footer() {
                 <button
                   className="btn t-bold font-semibold text-slate-900 bg-linear-to-r from-white/80 via-white to-white/80 hover:bg-white w-full transition duration-150 ease-in-out group"
                   onClick={() => {
-                    window.location.href = `https://platform.glows.ai/register?inviter_code=${inviter_code}`;
+                    window.location.href = `https://glows.ai/register?inviter_code=${inviter_code}`;
                   }}
                 >
                   Sign Up Now
